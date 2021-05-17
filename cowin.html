@@ -1,17 +1,46 @@
 <html>
 	<head>
 		<title>COwin check</title>
+		<style type="text/css">
+			div.field {
+				display: flex;
+				justify-content: space-between;
+				margin: 5px 0px;
+			}
+
+			label {
+				font-weight: bold;
+				margin: 0px 5px;
+			}
+			form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			h3 {
+				text-align: center;
+			}
+		</style>
 		<script type="text/javascript"></script>
 	</head>
 	<form>
-		<label>pincode</label>
+		<div class="field">
+		<label>Pincode</label>
 		<input type="number" name="pincode" required="">
-		<label>Time Interval(in second)</label>
+		</div>
+		<div class="field">
+		<label>Time Interval to check(in second)</label>
 		<input type="number" name="timeout" value=120>
+		</div>
+		<div class="field">
 		<label>No of weeks</label>
 		<input type="number" name="nweeks" value=2>
+		</div>
 		<input type="submit" name="submit">
 	</form>
+	<hr>
+	<h3>Updates</h3>
 	<div>
 	</div>
 	<script type="text/javascript">
