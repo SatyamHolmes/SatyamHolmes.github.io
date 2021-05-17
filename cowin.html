@@ -21,6 +21,10 @@
 			h3 {
 				text-align: center;
 			}
+
+			h5 {
+				color: red;
+			}
 		</style>
 		<script type="text/javascript"></script>
 	</head>
@@ -39,9 +43,10 @@
 		</div>
 		<input type="submit" name="submit">
 	</form>
+	<h5>Do not close this tab once clicked on submit. Closing this tab will stop checking for updates</h5>
 	<hr>
 	<h3>Updates</h3>
-	<div>
+	<div id="update">
 	</div>
 	<script type="text/javascript">
 		if (Notification.permission !== "granted")
@@ -55,9 +60,9 @@
 			nweeks = form['nweeks'].value
 
 			options = {day: '2-digit', month: '2-digit', year: 'numeric'}
-			setInterval(() => {
+			function check() {
 				let date = new Date() 
-				div = document.querySelector('div')
+				div = document.querySelector('div#update')
 				div.innerHTML = ""
 				console.log(date)
 				div.insertAdjacentHTML('beforeend', `<div>${date}</div>`)
@@ -93,7 +98,9 @@
 					}
 					xhttp.send()
 				}
-			}, time * 1000)
+			}
+			check()
+			setInterval(check, time * 1000)
 		});
 	</script>
 </html>
