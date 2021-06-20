@@ -41,6 +41,14 @@
 		<label>No of weeks</label>
 		<input type="number" name="nweeks" value=2>
 		</div>
+        <div class="field">
+            <label>Vaccine</label>
+            <select name="vaccine">
+                <option value="ALL" selected>All</option>
+                <option value="cOVAXIN">Covaxin </option>
+                <option value="COVISHIELD">Covishield</option>
+            </select>
+        </div>
 		<input type="submit" name="submit">
 	</form>
 	<h5>Do not close this tab once clicked on submit. Closing this tab will stop checking for updates</h5>
@@ -58,6 +66,7 @@
 			pin = form['pincode'].value
 			time = form['timeout'].value
 			nweeks = form['nweeks'].value
+            vaccine = form['vaccine'].value
 
 			options = {day: '2-digit', month: '2-digit', year: 'numeric'}
 			function check() {
@@ -80,7 +89,7 @@
 							available = 0
 							for (let center of data['centers']) {
 								for (let sessions of center['sessions']) {
-									if (sessions['available_capacity'] > 0) {
+									if (sessions['available_capacity'] > 0 && (vaccine == "ALL" || vaccine == sessions['vaccine'])) {
 										div.insertAdjacentHTML('beforeend', `<div>${sessions['available_capacity']} slots avilable on ${sessions['date']} at ${center['name']} for ${sessions['vaccine']}</div>`)
 										available += sessions['available_capacity']
 									}
